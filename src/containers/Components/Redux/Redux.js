@@ -1,5 +1,6 @@
 import React, { createRef, useEffect } from "react";
 import { connect } from "react-redux";
+import { useForm } from "react-hook-form";
 
 const Item = ({ name, price}) => (
     <li> {name}, ${price} </li>
@@ -7,34 +8,42 @@ const Item = ({ name, price}) => (
 
 const Redux = props => {
     useEffect(() => {
+        // mounted
     });
+    const { register, handleSubmit,
+        formState: { errors }
+    } = useForm();
 
     let nameRef = createRef();
     let priceRef = createRef();
-    const add = () => {
-        
-        if(nameRef.current.value && priceRef.current.value) {
+    const add = (data) => {
+        console.log('Data', data);
             props.add(
                 props.items.length + 1,
-                nameRef.current.value,
-                priceRef.current.value
+                data.name,
+                data.price
             )
-            nameRef.current.value = ''
-            priceRef.current.value = ''
-        }
+            data.name = ''
+            data.price = ''
     }
 
     return (
         <div className="mx-3 mt-3">
-            <ul>
+            <ul className="mx-2">
                 { props.items.map(i=> (
                     <Item key={i.id} name={i.name} price={i.price} />
                 )) }
             </ul>
             <div className="mx-2" style={{width: 200}}>
-                <input type="text" ref={nameRef} className="form-control" placeholder="Enter name" />
-                <input type="number" ref={priceRef} className="form-control my-2" placeholder="Enter price" />
-                <button className="btn btn-primary" onClick={add}>Add</button>
+                <input type="text" ref={nameRef} className="form-control"
+                    {...register("name",{required: true})}
+                    placeholder="Enter name" />
+                {errors.name && <p className="text-danger">Name is required</p>}
+                <input type="number" ref={priceRef} className="form-control my-2"
+                    {...register("price",{required: true})}
+                    placeholder="Enter price" />
+                {errors.price && <p className="text-danger">Price is required</p>}
+                <button className="btn btn-primary" onClick={handleSubmit(add)}>Add</button>
             </div>
         </div>
     )
