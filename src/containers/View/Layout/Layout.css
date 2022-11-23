@@ -1,0 +1,32 @@
+.active {
+    background-color: #409eff;
+    color: white;   
+}
+.leftSide {
+    width: 200px;
+    border: 1px solid grey;
+    height: 100vh;
+}
+.leftSide li a {
+    justify-content: center;
+    display: flex;
+    padding: 4px;
+}
+ul {
+    padding: 0px;
+    list-style-type: none;
+}
+.leftSide ul li {
+    border-bottom: 1px solid grey;
+}
+a {
+    text-decoration: none;
+}
+
+.rightSide {
+    padding: 10px;
+    width: calc(100vw - 200px);
+}
+nav li{
+    text-decoration: none;
+}
