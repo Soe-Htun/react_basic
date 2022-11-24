@@ -2,6 +2,8 @@ import React, { createRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { HTTP } from "../../../../service/http-common";
 
 export default  function SignIn(props) {
     // const [username, setUsername] = useState('')
@@ -9,13 +11,24 @@ export default  function SignIn(props) {
     const username = createRef();
     const password = createRef();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const { register, handleSubmit,
         formState: { errors }
     } = useForm();
     const signIn = (data) => {
-        console.log('Data', data);
+        
+        // let loginReq = {
+        //     employee_id: data.username,
+        //     password: data.password
+        // }
+        // HTTP.post("auth/v1/login",loginReq).then(res=> {
+        //     console.log('Res', res.data);
+        //     navigate("/home/redux")
+        // })
         navigate("/home/redux")
+        console.log('Data', data);
+        
     }
     return (
         <div className="vh-100 w-100 d-flex justify-content-center align-items-center">
