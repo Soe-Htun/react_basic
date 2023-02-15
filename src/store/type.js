@@ -1,0 +1,12 @@
+export const SET_CURRENT_USER = "SET_CURRENT_USER";
+
+export const SHOW_CATEGORY = "SHOW_CATEGORY"
+export const CREATE_CATEGORY = "CREATE_CATEGORY"
+export const UPDATE_CATEGORY = "UPDATE_CATEGORY"
+
+export const FILTER_CATEGORYS = "FILTER_CATEGORYS"
+
+export const SET_LOADING = "SET_LOADING"
+export const ADD_ERROR = "ADD_ERROR"
+
+
